@@ -8,12 +8,19 @@ assistant_id: 20240524-000202-customer-owl
 
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
-language: en
+language: vi
 
-pipeline: null
+pipeline:
+  - name: WhitespaceTokenizer
+  - name: custom_components.BARTPhoFeaturizer
+    model_weights: "vinai/bartpho-word"
+    cache_dir: "models"
+  - name: CountVectorsFeaturizer
+  - name: DIETClassifier
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
 # # See https://rasa.com/docs/rasa/tuning-your-model for more information.
+# pipeline: 
 #   - name: WhitespaceTokenizer
 #   - name: RegexFeaturizer
 #   - name: LexicalSyntacticFeaturizer
@@ -22,6 +29,10 @@ pipeline: null
 #     analyzer: char_wb
 #     min_ngram: 1
 #     max_ngram: 4
+#   - name: LanguageModelFeaturizer
+#     model_name: "bert"
+#     model_weights: "rasa/LaBSE"
+#     cache_dir: "models"
 #   - name: DIETClassifier
 #     epochs: 100
 #     constrain_similarities: true
