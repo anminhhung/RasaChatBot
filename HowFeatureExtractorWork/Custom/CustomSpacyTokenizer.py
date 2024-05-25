@@ -59,7 +59,7 @@ class MySpacyTokenizer(Tokenizer):
             for t in doc
             if t.text and t.text.strip()
         ]
-
+        print("### TOKENIZED MESSAGE ###:", self._apply_token_pattern(tokens))
         return self._apply_token_pattern(tokens)
 
     @staticmethod

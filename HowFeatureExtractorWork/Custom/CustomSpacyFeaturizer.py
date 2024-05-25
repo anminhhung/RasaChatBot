@@ -126,6 +126,7 @@ class MySpacyFeaturizer(DenseFeaturizer, GraphComponent):
             self._config[FEATURIZER_CLASS_ALIAS],
         )
         message.add_features(final_sentence_features)
+        print(" ###### FINAL FEATURE ######:", final_sentence_features)
 
     @classmethod
     def validate_config(cls, config: Dict[Text, Any]) -> None:

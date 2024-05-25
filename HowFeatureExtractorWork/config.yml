@@ -16,10 +16,10 @@ language: en
 pipeline:
 - name: SpacyNLP
   model: "en_core_web_md"
-# - name: CustomSpacyFeaturizer.MySpacyTokenizer
+# - name: SpacyTokenizer
 - name: Custom.CustomSpacyTokenizer.MySpacyTokenizer
-- name: Custom.CustomSpacyFeaturizer.MySpacyFeaturizer
 # - name: SpacyFeaturizer
+- name: Custom.CustomSpacyFeaturizer.MySpacyFeaturizer
 - name: DIETClassifier
 
 # Configuration for Rasa Core.
