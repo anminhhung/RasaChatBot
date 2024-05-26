@@ -11,11 +11,13 @@ assistant_id: 20240524-000202-customer-owl
 language: vi
 
 pipeline:
-  - name: WhitespaceTokenizer
-  - name: custom_components.BARTPhoFeaturizer
-    model_weights: "vinai/bartpho-word"
-    cache_dir: "models"
-  - name: CountVectorsFeaturizer
+  # - name: WhitespaceTokenizer
+  # - name: custom_components.BARTPhoFeaturizer
+  #   model_weights: "vinai/bartpho-word"
+  #   cache_dir: "models"
+  # - name: CountVectorsFeaturizer
+  - name: Custom.BARTPHOTOKENIZER.BartPhoTokenizer
+  - name: Custom.BARTPHOFEATURIZER.BartPhoFeaturizer
   - name: DIETClassifier
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
