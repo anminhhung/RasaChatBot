@@ -25,28 +25,23 @@ logger = logging.getLogger(__name__)
     DefaultV1Recipe.ComponentType.MESSAGE_FEATURIZER, is_trainable=False
 )
 class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
-    """Featurizer sử dụng BARTpho từ Hugging Face."""
 
     @classmethod
     def required_components(cls) -> List[Type]:
-        """Các thành phần cần thiết trước khi sử dụng thành phần này."""
         return [BartPhoTokenizer]
 
     @staticmethod
     def required_packages() -> List[Text]:
-        """Các gói Python cần thiết để chạy thành phần này."""
         return ["transformers", "torch"]
 
     @staticmethod
     def get_default_config() -> Dict[Text, Any]:
-        """Cấu hình mặc định của thành phần."""
         return {
             **DenseFeaturizer.get_default_config(),
             POOLING: MEAN_POOLING,
         }
 
     def __init__(self, config: Dict[Text, Any], name: Text) -> None:
-        """Khởi tạo BartphoFeaturizer."""
         super().__init__(name, config)
         self.pooling_operation = self._config[POOLING]
         self.model = AutoModel.from_pretrained("vinai/bartpho-word")
@@ -60,11 +55,9 @@ class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
         resource: Resource,
         execution_context: ExecutionContext,
     ) -> GraphComponent:
-        """Tạo một thành phần mới."""
         return cls(config, execution_context.node_name)
 
     def process(self, messages: List[Message]) -> List[Message]:
-        """Xử lý các messages và tính toán, thiết lập features."""
         for message in messages:
             for attribute in DENSE_FEATURIZABLE_ATTRIBUTES:
                 # print("Xử lí message:", message)
@@ -72,20 +65,18 @@ class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
         return messages
 
     def process_training_data(self, training_data: TrainingData) -> TrainingData:
-        """Xử lý các ví dụ huấn luyện trong dữ liệu huấn luyện."""
         self.process(training_data.training_examples)
         return training_data
 
     def _set_bartpho_features(self, message: Message, attribute: Text = TEXT) -> None:
-        """Thêm các đặc trưng từ BARTpho vào message."""
         tokens = self.tokenizer.tokenize(message, attribute)
-        print("# FEATURE TOKEN Ở ĐÂY #:", tokens)
-        print("Giá trị text")
+        # print("# FEATURE TOKEN Ở ĐÂY #:", tokens)
         # print("Message sau khi dc token:", tokens)
         if not tokens:
             return
+        # print("Giá trị text")
         texts = [token.text for token in tokens]
-        vectorizedText = self.tokenizer.tokenizer.convert_tokens_to_ids(texts)
+        vectorizedText = torch.tensor([self.tokenizer.tokenizer.convert_tokens_to_ids(texts)])
 
         with torch.no_grad():
             outputs = self.model(vectorizedText)
@@ -109,9 +100,8 @@ class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
             self._config[FEATURIZER_CLASS_ALIAS],
         )
         message.add_features(final_sentence_features)
-        print(" ### FINAL FEATURE ###:", final_sentence_features)
+        # print(" ### FINAL FEATURE ###:", final_sentence_features)
 
     @classmethod
     def validate_config(cls, config: Dict[Text, Any]) -> None:
-        """Xác thực cấu hình của thành phần."""
         pass

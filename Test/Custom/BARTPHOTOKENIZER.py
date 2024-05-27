@@ -66,9 +66,9 @@ class BartPhoTokenizer(Tokenizer):
         # print(type(self._apply_token_pattern(tokens)[0]))
         return self._apply_token_pattern(tokens)
     
-    def tokenize(self, message: Message, attribute: Text = TEXT) -> List[Token]:
-        # TO DO
-        pass
+    # def tokenize(self, list: str) -> List[str]:
+    #     # TO DO
+    #     pass
     @staticmethod
     def _tag_of_token(token: Any) -> Text:
         # Implement POS tagging if required, or remove if not necessary
