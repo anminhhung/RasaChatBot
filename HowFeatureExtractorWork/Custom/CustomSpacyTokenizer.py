@@ -49,6 +49,8 @@ class MySpacyTokenizer(Tokenizer):
     def tokenize(self, message: Message, attribute: Text) -> List[Token]:
         """Tokenizes the text of the provided attribute of the incoming message."""
         doc = self._get_doc(message, attribute)
+        print("DOC:", doc)
+        print(type(doc))
         if not doc:
             return []
 
@@ -59,7 +61,9 @@ class MySpacyTokenizer(Tokenizer):
             for t in doc
             if t.text and t.text.strip()
         ]
-        print("### TOKENIZED MESSAGE ###:", self._apply_token_pattern(tokens))
+        # print("# TOKENS #:", tokens)
+        # print("### TOKENIZED MESSAGE ###:", self._apply_token_pattern(tokens))
+        # print("## TYPE ##:", type(self._apply_token_pattern(tokens)[0]))
         return self._apply_token_pattern(tokens)
 
     @staticmethod
