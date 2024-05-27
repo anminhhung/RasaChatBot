@@ -6,7 +6,7 @@ agent = Agent.load("Test\models")
 
 # # Parse a sample text
 # text = "Hello, how are you?"
-text = "hello there"
+text = "hello there, how are you"
 result = asyncio.run(agent.parse_message(message_data=text))
 
 # # # Print the features

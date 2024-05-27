@@ -11,23 +11,23 @@ intents:
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Chào! Bạn khỏe không?"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
+  - text: "Hi vọng thứ này làm bạn vui:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+  - text: "Nó có giúp bạn thấy tốt hơn không?"
 
   utter_happy:
-  - text: "Great, carry on!"
+  - text: "Tuyệt! Tiếp tục đi!"
 
   utter_goodbye:
   - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "Tôi là một trợ lý ảo, được tạo ra bằng Rasa"
 
 session_config:
   session_expiration_time: 60
