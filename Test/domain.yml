@@ -8,26 +8,61 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - give_name_phone_id
+
+entities:
+  - PERSON
+  - PHONE
+  - ID
+
+slots:
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: PERSON
+      intent: give_name_phone_id
+
+  phone_number:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: PHONE
+      intent: give_name_phone_id
+
+  user_id:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: ID
+      intent: give_name_phone_id 
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Chào! Bạn khỏe không?"
 
   utter_cheer_up:
-  - text: "Here is something to cheer you up:"
+  - text: "Hi vọng thứ này làm bạn vui:"
     image: "https://i.imgur.com/nGF1K8f.jpg"
 
   utter_did_that_help:
-  - text: "Did that help you?"
+  - text: "Nó có giúp bạn thấy tốt hơn không?"
 
   utter_happy:
-  - text: "Great, carry on!"
+  - text: "Tuyệt! Tiếp tục đi!"
 
   utter_goodbye:
   - text: "Bye"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "Tôi là một trợ lý ảo, được tạo ra bằng Rasa"
+
+  utter_confirm_user_info:
+  - text: "Kiểm tra entity extractor 
+  Tên {user_name} - Sđt: {phone_number} - CCCD: {user_id} "
 
 session_config:
   session_expiration_time: 60

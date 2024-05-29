@@ -16,6 +16,9 @@ language: en
 pipeline:
 - name: SpacyNLP
   model: "en_core_web_md"
+# - name: Custom.CustomSpacyEntityExtractor.MySpacyEntityExtractor
+- name: Custom.GLiNerEntityExtractor.GLiNerEntityExtractor
+  dimensions: ["PERSON", "PHONE", "ID"]
 # - name: SpacyTokenizer
 - name: Custom.CustomSpacyTokenizer.MySpacyTokenizer
 # - name: SpacyFeaturizer

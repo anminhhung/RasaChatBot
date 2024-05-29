@@ -3,89 +3,115 @@ version: "3.1"
 nlu:
 - intent: greet
   examples: |
-    - hey
-    - hello
-    - hi
-    - hello there
-    - good morning
-    - good evening
-    - moin
-    - hey there
-    - let's go
-    - hey dude
-    - goodmorning
-    - goodevening
-    - good afternoon
+    - chào
+    - xin chào
+    - chào bạn
+    - chào buổi sáng
+    - chào buổi tối
+    - xin chào 
+    - chào bạn
+    - hãy đi
+    - chào 
+    - chào buổi sáng
+    - chào buổi tối
+    - chào buổi chiều
 
 - intent: goodbye
   examples: |
-    - cu
-    - good by
-    - cee you later
-    - good night
-    - bye
-    - goodbye
-    - have a nice day
-    - see you around
-    - bye bye
-    - see you later
+    - tạm biệt
+    - hẹn gặp lại
+    - chúc ngủ ngon
+    - tạm biệt
+    - tạm biệt
+    - chúc một ngày tốt lành
+    - hẹn gặp lại
+    - tạm biệt
+    - hẹn gặp lại
 
 - intent: affirm
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - có
+    - vâng
+    - đúng
+    - dĩ nhiên
+    - nghe có vẻ tốt
+    - chính xác
 
 - intent: deny
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
+    - không
+    - k
+    - không bao giờ
+    - Tôi không nghĩ vậy
+    - không thích thế
+    - không có cách nào
+    - không thực sự
 
 - intent: mood_great
   examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
+    - hoàn hảo
+    - tuyệt vời
+    - tuyệt diệu
+    - cảm thấy như vua
+    - tuyệt vời
+    - tôi cảm thấy rất tốt
+    - tôi rất tốt
+    - tôi tuyệt vời
+    - tôi sẽ cứu thế giới
+    - rất phấn khích
+    - cực kỳ tốt
+    - rất hoàn hảo
+    - rất tốt
+    - hoàn hảo
 
 - intent: mood_unhappy
   examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - ngày của tôi thật tồi tệ
+    - tôi buồn
+    - tôi không cảm thấy khỏe
+    - tôi thất vọng
+    - rất buồn
+    - tôi thật buồn
+    - buồn
+    - rất buồn
+    - không vui
+    - không tốt
+    - không được tốt lắm
+    - cực kỳ buồn
+    - quá buồn
+    - thật buồn
 
 - intent: bot_challenge
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - Bạn là một con bot à?
+    - Bạn là một con người à?
+    - Tôi đang nói chuyện với một con bot phải không?
+    - Tôi đang nói chuyện với một con người phải không?
+
+- intent: give_name_phone_id
+  examples: |
+    - Tôi tên là [Dung](PERSON), số điện thoại [0324593069](PHONE) và CCCD [129593960391](ID)
+    - Tôi là [An](PERSON), sđt [0390295960](PHONE) và CCCD [386029386012](ID)
+    - Tôi tên [Mai](PERSON), số điện thoại [0941025930](PHONE) và CCCD là [693850395039](ID)
+    - Tôi là [Sang](PERSON), sđt của tôi là [0840293850](PHONE) và CCCD là [293059386930](ID)
+    - Tôi tên [Đăng](PERSON), sđt của tôi [0791820592](PHONE) và CCCD [306283960301](ID)
+    - [Oanh](PERSON), [0321840295](PHONE) và [123456789012](ID)
+    - Tôi là [Minh](PERSON), số điện thoại [0987654321](PHONE) và CCCD là [987654321098](ID)
+    - Tôi là [Ly](PERSON), sđt của tôi là [0561234567](PHONE) và CCCD là [456789012345](ID)
+    - [Mạnh](PERSON), sđt của tôi [0777654321](PHONE) và CCCD [654321098765](ID)
+    - Tôi tên [Xuân](PERSON), sdt là [0835678910](PHONE) và CCCD [789012345678](ID)
+    - Tôi tên là [Dung](PERSON), CCCD [129593960391](ID) và số điện thoại [0324593069](PHONE)
+    - Tôi là [An](PERSON), CCCD [386029386012](ID) và sđt [0390295960](PHONE)
+    - Tôi tên [Mai](PERSON), CCCD là [693850395039](ID) và số điện thoại [0941025930](PHONE)
+    - Tôi là [Sang](PERSON), CCCD là [293059386930](ID) và sđt của tôi là [0840293850](PHONE)
+    - Tôi tên [Đăng](PERSON), CCCD [306283960301](ID) và sđt của tôi [0791820592](PHONE)
+    - [Oanh](PERSON), [123456789012](ID) và [0321840295](PHONE)
+    - Tôi là [Minh](PERSON), CCCD là [987654321098](ID) và số điện thoại [0987654321](PHONE)
+    - Tôi là [Ly](PERSON), CCCD là [456789012345](ID) và sđt của tôi là [0561234567](PHONE)
+    - [Mạnh](PERSON), CCCD [654321098765](ID) và sđt của tôi [0777654321](PHONE)
+    - Tôi tên [Xuân](PERSON), CCCD [789012345678](ID) và sdt là [0835678910](PHONE)
+
+
+
+# Tôi tên Xuân, sdt là 0835678910 và CCCD 789012345678
+# Tôi tên Xuân, CCCD 789012345678 và sdt là 0835678910
