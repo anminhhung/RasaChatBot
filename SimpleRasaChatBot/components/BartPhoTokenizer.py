@@ -40,8 +40,6 @@ class BartPhoTokenizer(Tokenizer):
         return ["transformers"]
 
     def __init__(self, config: Dict[Text, Any]) -> None:
-        default_config = self.get_default_config()
-        config = {**default_config, **config}  # Merge default config with provided config
         super().__init__(config)
         self.tokenizer = AutoTokenizer.from_pretrained("vinai/bartpho-word")
 

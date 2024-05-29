@@ -2,11 +2,11 @@ import asyncio
 from rasa.core.agent import Agent
 
 # # Load the trained model
-agent = Agent.load("RasaChatBot\models")
+agent = Agent.load("SimpleRasaChatBot\models")
 
 # # Parse a sample text
 # text = "Hello, how are you?"
-text = "hello there, how are you"
+text = "xin chào, bạn có khỏe không?"
 result = asyncio.run(agent.parse_message(message_data=text))
 
 # # # Print the features

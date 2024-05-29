@@ -16,7 +16,7 @@ from rasa.nlu.constants import DENSE_FEATURIZABLE_ATTRIBUTES, FEATURIZER_CLASS_A
 from rasa.shared.nlu.constants import TEXT, FEATURE_TYPE_SENTENCE, FEATURE_TYPE_SEQUENCE
 from rasa.utils.tensorflow.constants import POOLING, MEAN_POOLING
 
-from transformers import AutoModel
+from transformers import AutoModel, AutoTokenizer
 from components.BartPhoTokenizer import BartPhoTokenizer
 
 logger = logging.getLogger(__name__)
@@ -28,7 +28,7 @@ class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
 
     @classmethod
     def required_components(cls) -> List[Type]:
-        return [BartPhoTokenizer]
+        return []
 
     @staticmethod
     def required_packages() -> List[Text]:
@@ -45,7 +45,7 @@ class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
         super().__init__(name, config)
         self.pooling_operation = self._config[POOLING]
         self.model = AutoModel.from_pretrained("vinai/bartpho-word")
-        self.tokenizer = BartPhoTokenizer(self._config)
+        self.tokenizer = AutoTokenizer.from_pretrained("vinai/bartpho-word")
 
     @classmethod
     def create(
@@ -68,15 +68,15 @@ class BartPhoFeaturizer(DenseFeaturizer, GraphComponent):
         return training_data
 
     def _set_bartpho_features(self, message: Message, attribute: Text = TEXT) -> None:
-        tokens = self.tokenizer.tokenize(message, attribute)
-        if not tokens:
+        text = message.get(attribute)
+        if not text:
             return
         
-        texts = [token.text for token in tokens]
-        vectorizedText = torch.tensor([self.tokenizer.tokenizer.convert_tokens_to_ids(texts)])
-
+        inputs = self.tokenizer(text, return_tensors="pt")
+        input_ids = inputs["input_ids"]
+        
         with torch.no_grad():
-            outputs = self.model(vectorizedText)
+            outputs = self.model(input_ids)
         sequence_features = outputs.last_hidden_state.mean(dim=1).cpu().numpy()
         sentence_features = self.aggregate_sequence_features(
             sequence_features, self.pooling_operation
