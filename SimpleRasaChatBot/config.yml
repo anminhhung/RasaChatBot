@@ -16,6 +16,11 @@ pipeline:
   #   model_weights: "vinai/bartpho-word"
   #   cache_dir: "models"
   # - name: CountVectorsFeaturizer
+  - name: SpacyNLP
+    model: "en_core_web_md"
+  # - name: components.GLiNerEntityExtractor.GLiNerEntityExtractor
+  - name: SpacyEntityExtractor
+    dimensions: ["PERSON", "PHONE", "ID"]
   - name: components.BartPhoTokenizer.BartPhoTokenizer
   - name: components.BartPhoFeaturizer.BartPhoFeaturizer
   - name: DIETClassifier

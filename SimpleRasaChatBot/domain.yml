@@ -8,6 +8,37 @@ intents:
   - mood_great
   - mood_unhappy
   - bot_challenge
+  - give_name_phone_id
+
+entities:
+  - PERSON
+  - PHONE
+  - ID
+
+slots:
+  user_name:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: PERSON
+      intent: give_name_phone_id
+
+  phone_number:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: PHONE
+      intent: give_name_phone_id
+
+  user_id:
+    type: text
+    influence_conversation: false
+    mappings:
+    - type: from_entity
+      entity: ID
+      intent: give_name_phone_id
 
 responses:
   utter_greet:
@@ -28,6 +59,10 @@ responses:
 
   utter_iamabot:
   - text: "Tôi là một trợ lý ảo, được tạo ra bằng Rasa"
+
+  utter_confirm_user_info:
+  - text: "Kiểm tra entity extractor 
+  Tên {user_name} - Sđt: {phone_number} - CCCD: {user_id} "
 
 session_config:
   session_expiration_time: 60

@@ -17,7 +17,6 @@ from rasa.shared.nlu.constants import TEXT, FEATURE_TYPE_SENTENCE, FEATURE_TYPE_
 from rasa.utils.tensorflow.constants import POOLING, MEAN_POOLING
 
 from transformers import AutoModel, AutoTokenizer
-from components.BartPhoTokenizer import BartPhoTokenizer
 
 logger = logging.getLogger(__name__)
 
