@@ -8,7 +8,7 @@ assistant_id: 20240525-082929-stable-surface
 
 # Configuration for Rasa NLU.
 # https://rasa.com/docs/rasa/nlu/components/
-language: en
+language: vi
 
 # # No configuration for the NLU pipeline was provided. The following default pipeline was used to train your model.
 # # If you'd like to customize it, uncomment and adjust the pipeline.
@@ -16,8 +16,8 @@ language: en
 pipeline:
 - name: SpacyNLP
   model: "en_core_web_md"
-# - name: Custom.CustomSpacyEntityExtractor.MySpacyEntityExtractor
-- name: Custom.GLiNerEntityExtractor.GLiNerEntityExtractor
+# - name: Custom.GLiNerEntityExtractor.GLiNerEntityExtractor
+- name: Custom.CustomSpacyEntityExtractor.MySpacyEntityExtractor
   dimensions: ["PERSON", "PHONE", "ID"]
 # - name: SpacyTokenizer
 - name: Custom.CustomSpacyTokenizer.MySpacyTokenizer
